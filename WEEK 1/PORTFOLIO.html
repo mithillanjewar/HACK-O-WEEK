@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mithil Lanjewar | Portfolio</title>
+  <meta name="description" content="Personal portfolio of Mithil Lanjewar - Developer & Designer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #1a1d2e;
+      --foreground: #e8eaf0;
+      --card: #1f2337;
+      --primary: #2dd4bf;
+      --primary-foreground: #1a1d2e;
+      --secondary: #262a3d;
+      --muted-foreground: #9ca3af;
+      --border: #2f3549;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background-color: rgba(26, 29, 46, 0.8);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 1.5rem 5rem;
+    }
+
+    .hero-container {
+      max-width: 1152px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .hero-content {
+      order: 2;
+    }
+
+    @media (min-width: 768px) {
+      .hero-content {
+        order: 1;
+      }
+    }
+
+    .hero-greeting {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 3.75rem;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-description {
+      color: var(--muted-foreground);
+      margin-bottom: 2rem;
+      max-width: 32rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--secondary);
+    }
+
+    .hero-image-wrapper {
+      order: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-image-wrapper {
+        order: 2;
+      }
+    }
+
+    .hero-image-container {
+      position: relative;
+      width: 16rem;
+      height: 16rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-image-container {
+        width: 20rem;
+        height: 20rem;
+      }
+    }
+
+    .hero-image-glow {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(45, 212, 191, 0.2);
+      border-radius: 50%;
+      filter: blur(48px);
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--border);
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-container {
+      max-width: 1152px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-line {
+      width: 3rem;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .section-label {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .bg-card {
+      background-color: var(--card);
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .about-text p {
+      color: var(--muted-foreground);
+      margin-bottom: 1rem;
+    }
+
+    .about-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .about-card {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      background-color: var(--secondary);
+      border: 1px solid var(--border);
+    }
+
+    .about-card h4 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-card p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .skill-item {
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      background-color: var(--secondary);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .skill-item:hover {
+      border-color: var(--primary);
+    }
+
+    /* Contact Section */
+    .contact-description {
+      color: var(--muted-foreground);
+      margin-bottom: 3rem;
+      max-width: 36rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      background-color: var(--secondary);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--primary);
+    }
+
+    .contact-card svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--primary);
+    }
+
+    .contact-card-label {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .contact-card-value {
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-container {
+      max-width: 1152px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-container {
+        flex-direction: row;
+      }
+    }
+
+    .footer-text {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--foreground);
+    }
+
+    .footer-links svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    /* Icon styles */
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <span class="logo">ML</span>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-title">Mithil Lanjewar</h1>
+        <p class="hero-subtitle">Developer & Designer</p>
+        <p class="hero-description">
+          I build accessible, pixel-perfect digital experiences for the web.
+          Passionate about creating clean, efficient, and user-friendly applications.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://www.linkedin.com/in/mithil-lanjewar-b1091a375" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/mithillanjewar" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <div class="hero-image-container">
+          <div class="hero-image-glow"></div>
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-22%20at%2010.37.24%20AM-VMos3mxF84ufKKpfEIayjyMn48G4YO.jpeg" alt="Mithil Lanjewar" class="hero-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="bg-card">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <h2 class="section-label">About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h3 class="section-title">Building digital experiences that matter</h3>
+          <p>
+            I'm a developer passionate about crafting accessible, pixel-perfect user
+            interfaces that blend thoughtful design with robust engineering. My favorite
+            work lies at the intersection of design and development.
+          </p>
+          <p>
+            I enjoy creating experiences that not only look great but are meticulously
+            built for performance and usability. When I'm not coding, you'll find me
+            exploring new technologies and contributing to open-source projects.
+          </p>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <h4>Web Development</h4>
+            <p>Building responsive and performant web applications with modern technologies.</p>
+          </div>
+          <div class="about-card">
+            <h4>UI/UX Design</h4>
+            <p>Creating intuitive and beautiful user interfaces with attention to detail.</p>
+          </div>
+          <div class="about-card">
+            <h4>Problem Solving</h4>
+            <p>Tackling complex challenges with clean and efficient code solutions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <h2 class="section-label">Skills</h2>
+      </div>
+      <h3 class="section-title">Technologies I work with</h3>
+      <div class="skills-grid">
+        <div class="skill-item">JavaScript</div>
+        <div class="skill-item">TypeScript</div>
+        <div class="skill-item">React</div>
+        <div class="skill-item">Next.js</div>
+        <div class="skill-item">Node.js</div>
+        <div class="skill-item">Python</div>
+        <div class="skill-item">HTML/CSS</div>
+        <div class="skill-item">Tailwind CSS</div>
+        <div class="skill-item">Git</div>
+        <div class="skill-item">SQL</div>
+        <div class="skill-item">MongoDB</div>
+        <div class="skill-item">REST APIs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-card">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <h2 class="section-label">Contact</h2>
+      </div>
+      <h3 class="section-title">Let's work together</h3>
+      <p class="contact-description">
+        If you would like to discuss a project or just say hi, I'm always down to chat.
+        Feel free to reach out through any of the platforms below.
+      </p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/mithil-lanjewar-b1091a375" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <div>
+            <p class="contact-card-label">LinkedIn</p>
+            <p class="contact-card-value">Connect</p>
+          </div>
+        </a>
+        <a href="https://github.com/mithillanjewar" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+          <div>
+            <p class="contact-card-label">GitHub</p>
+            <p class="contact-card-value">@mithillanjewar</p>
+          </div>
+        </a>
+        <a href="mailto:hello@mithil.dev" class="contact-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <div>
+            <p class="contact-card-label">Email</p>
+            <p class="contact-card-value">Say Hello</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <p class="footer-text">© 2026 Mithil Lanjewar. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/mithillanjewar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/mithil-lanjewar-b1091a375" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
