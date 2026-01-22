@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Spice House | Restaurant Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#9c3f18;
+      --secondary:#f6efe9;
+      --card:#ffffff;
+      --border:#e5c9b6;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--secondary);
+      color:#333;
+    }
+    header{
+      background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+      url('https://images.unsplash.com/photo-1600628422019-44c63f76a51d');
+      background-size:cover;
+      background-position:center;
+      color:#fff;
+      text-align:center;
+      padding:80px 20px;
+    }
+    header h1{
+      font-family:'Playfair Display',serif;
+      font-size:48px;
+      margin-bottom:10px;
+    }
+    header p{font-size:16px;opacity:.9}
+
+    nav{
+      background:#fff;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      padding:12px;
+      position:sticky;
+      top:0;
+      z-index:100;
+      border-bottom:1px solid var(--border);
+    }
+    nav a{
+      text-decoration:none;
+      padding:8px 16px;
+      border-radius:20px;
+      font-size:14px;
+      color:var(--primary);
+      border:1px solid var(--border);
+      transition:.3s;
+    }
+    nav a:hover{background:var(--primary);color:#fff}
+
+    section{
+      max-width:1000px;
+      margin:50px auto;
+      padding:0 20px;
+    }
+    section h2{
+      font-family:'Playfair Display',serif;
+      color:var(--primary);
+      margin-bottom:25px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+    }
+    .item{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:14px 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      transition:.3s;
+    }
+    .item:hover{transform:translateY(-4px)}
+    .item span.price{color:var(--primary);font-weight:500}
+
+    footer{
+      background:#fff;
+      text-align:center;
+      padding:30px 20px;
+      border-top:1px solid var(--border);
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>The Spice House</h1>
+  <p>Authentic Indian Cuisine</p>
+</header>
+
+<nav>
+  <a href="#starters">Starters</a>
+  <a href="#veg">Main Course - Veg</a>
+  <a href="#nonveg">Main Course - Non-Veg</a>
+  <a href="#rice">Rice & Breads</a>
+  <a href="#beverages">Beverages</a>
+  <a href="#desserts">Desserts</a>
+</nav>
+
+<section id="starters">
+  <h2>🥗 Starters</h2>
+  <div class="menu-grid">
+    <div class="item"><span>Veg Soup</span><span class="price">₹80</span></div>
+    <div class="item"><span>Tomato Soup</span><span class="price">₹90</span></div>
+    <div class="item"><span>Paneer Tikka</span><span class="price">₹180</span></div>
+    <div class="item"><span>Veg Manchurian</span><span class="price">₹150</span></div>
+    <div class="item"><span>French Fries</span><span class="price">₹120</span></div>
+  </div>
+</section>
+
+<section id="veg">
+  <h2>🍛 Main Course - Veg</h2>
+  <div class="menu-grid">
+    <div class="item"><span>Dal Tadka</span><span class="price">₹140</span></div>
+    <div class="item"><span>Dal Fry</span><span class="price">₹130</span></div>
+    <div class="item"><span>Paneer Butter Masala</span><span class="price">₹200</span></div>
+    <div class="item"><span>Shahi Paneer</span><span class="price">₹210</span></div>
+    <div class="item"><span>Mix Veg</span><span class="price">₹160</span></div>
+    <div class="item"><span>Veg Kolhapuri</span><span class="price">₹170</span></div>
+  </div>
+</section>
+
+<section id="nonveg">
+  <h2>🍗 Main Course - Non-Veg</h2>
+  <div class="menu-grid">
+    <div class="item"><span>Chicken Curry</span><span class="price">₹220</span></div>
+    <div class="item"><span>Chicken Butter Masala</span><span class="price">₹240</span></div>
+    <div class="item"><span>Chicken Biryani</span><span class="price">₹260</span></div>
+    <div class="item"><span>Mutton Curry</span><span class="price">₹320</span></div>
+    <div class="item"><span>Egg Curry</span><span class="price">₹160</span></div>
+  </div>
+</section>
+
+<section id="rice">
+  <h2>🍚 Rice & Breads</h2>
+  <div class="menu-grid">
+    <div class="item"><span>Plain Rice</span><span class="price">₹90</span></div>
+    <div class="item"><span>Jeera Rice</span><span class="price">₹120</span></div>
+    <div class="item"><span>Veg Pulao</span><span class="price">₹150</span></div>
+    <div class="item"><span>Roti</span><span class="price">₹20</span></div>
+    <div class="item"><span>Butter Roti</span><span class="price">₹25</span></div>
+    <div class="item"><span>Naan</span><span class="price">₹40</span></div>
+    <div class="item"><span>Butter Naan</span><span class="price">₹50</span></div>
+  </div>
+</section>
+
+<section id="beverages">
+  <h2>🥤 Beverages</h2>
+  <div class="menu-grid">
+    <div class="item"><span>Tea</span><span class="price">₹30</span></div>
+    <div class="item"><span>Coffee</span><span class="price">₹40</span></div>
+    <div class="item"><span>Cold Drink</span><span class="price">₹50</span></div>
+    <div class="item"><span>Fresh Lime Soda</span><span class="price">₹60</span></div>
+    <div class="item"><span>Mineral Water</span><span class="price">₹20</span></div>
+  </div>
+</section>
+
+<section id="desserts">
+  <h2>🍰 Desserts</h2>
+  <div class="menu-grid">
+    <div class="item"><span>Gulab Jamun</span><span class="price">₹60</span></div>
+    <div class="item"><span>Ice Cream</span><span class="price">₹80</span></div>
+    <div class="item"><span>Rasgulla</span><span class="price">₹70</span></div>
+    <div class="item"><span>Fruit Salad</span><span class="price">₹90</span></div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>The Spice House</strong><br>
+  123 Culinary Lane, Food District<br>
+  Open Daily: 11:00 AM – 11:00 PM</p>
+  <p style="margin-top:10px;font-size:12px;">Prices inclusive of taxes | Menu items subject to availability</p>
+</footer>
+
+</body>
+</html>
