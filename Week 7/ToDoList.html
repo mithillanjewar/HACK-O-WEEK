@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taskflow</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #0d0d0d;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 500px;
+        text-align: center;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 5px;
+    }
+
+    .logo-box {
+        width: 25px;
+        height: 25px;
+        background-color: #ff7a00;
+        border-radius: 6px;
+    }
+
+    .date {
+        color: #aaa;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .input-area {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .input-area input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        background-color: #1c1c1c;
+        color: white;
+    }
+
+    .input-area button {
+        padding: 10px 15px;
+        background-color: #ff7a00;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .input-area button:hover {
+        opacity: 0.9;
+    }
+
+    .empty-state {
+        color: #aaa;
+        margin-top: 50px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        background-color: #1c1c1c;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .delete-btn {
+        background: red;
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="logo">
+        <div class="logo-box"></div>
+        <h2>Taskflow</h2>
+    </div>
+
+    <div class="date" id="date"></div>
+
+    <div class="input-area">
+        <input type="text" id="taskInput" placeholder="maths homework">
+        <button onclick="addTask()">+ Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <div class="empty-state" id="emptyState">
+        <h3>No tasks yet</h3>
+        <p>Add your first task to get started</p>
+    </div>
+</div>
+
+<script>
+    // Show current date
+    const dateElement = document.getElementById("date");
+    const today = new Date();
+    dateElement.innerText = today.toDateString();
+
+    function addTask() {
+        const input = document.getElementById("taskInput");
+        const taskText = input.value.trim();
+        const taskList = document.getElementById("taskList");
+        const emptyState = document.getElementById("emptyState");
+
+        if (taskText === "") return;
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${taskText}
+            <button class="delete-btn" onclick="deleteTask(this)">X</button>
+        `;
+
+        taskList.appendChild(li);
+        input.value = "";
+
+        emptyState.style.display = "none";
+    }
+
+    function deleteTask(button) {
+        const li = button.parentElement;
+        li.remove();
+
+        const taskList = document.getElementById("taskList");
+        const emptyState = document.getElementById("emptyState");
+
+        if (taskList.children.length === 0) {
+            emptyState.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
