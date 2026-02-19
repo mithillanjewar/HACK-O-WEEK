@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Blog</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    color:#333;
+}
+
+header{
+    background:#ffffff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:700;
+    color:#ff6b00;
+}
+
+nav a{
+    text-decoration:none;
+    color:#333;
+    margin-left:25px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#ff6b00;
+}
+
+/* Hero Section */
+.hero{
+    height:90vh;
+    background:url('https://images.unsplash.com/photo-1564507592333-c60657eea523') center/cover no-repeat;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+}
+
+.hero-content{
+    position:relative;
+    max-width:800px;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.btn{
+    background:#ff6b00;
+    color:white;
+    padding:12px 25px;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#e65c00;
+}
+
+/* Blog Section */
+.blog{
+    padding:80px 8%;
+}
+
+.blog h2{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.blog p.subtitle{
+    text-align:center;
+    color:#777;
+    margin-bottom:50px;
+}
+
+.blog-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:15px;
+}
+
+.card-content p{
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:15px;
+    color:#555;
+}
+
+.read-btn{
+    text-decoration:none;
+    color:#ff6b00;
+    font-weight:600;
+}
+
+/* Footer */
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+    font-size:14px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .hero h1{
+        font-size:32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Travel Blog</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover the Beauty of Incredible India</h1>
+        <p>Join me as I explore vibrant cities, peaceful backwaters, and breathtaking mountains. Every journey tells a story filled with culture, flavor, and unforgettable memories.</p>
+        <a href="#" class="btn">Explore Blog</a>
+    </div>
+</section>
+
+<section class="blog">
+    <h2>Travel Stories</h2>
+    <p class="subtitle">Explore my journeys across the vibrant lands of India</p>
+
+    <div class="blog-container">
+
+        <!-- Jaipur -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41" alt="Jaipur">
+            <div class="card-content">
+                <h3>Exploring the Royal Charm of Jaipur</h3>
+                <p>
+                    Jaipur, the Pink City of India, is a beautiful blend of history and vibrant culture. From the stunning Hawa Mahal to the grand Amer Fort, every corner of the city reflects royal elegance and architectural brilliance.
+                </p>
+                <p>
+                    Walking through the colorful bazaars filled with handcrafted jewelry, textiles, and traditional Rajasthani food was an unforgettable experience. The warmth of the city, its heritage, and its rich flavors make Jaipur a destination that truly captures the heart.
+                </p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
+        </div>
+
+        <!-- Kerala -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944" alt="Kerala">
+            <div class="card-content">
+                <h3>A Peaceful Escape to Kerala</h3>
+                <p>
+                    Kerala feels like a calm paradise where nature speaks in whispers. The serene backwaters of Alleppey, lined with coconut trees and floating houseboats, offer pure relaxation away from busy city life.
+                </p>
+                <p>
+                    From the lush tea gardens of Munnar to the soothing beaches of Kovalam, every moment in Kerala feels refreshing. The traditional cuisine, cultural performances, and scenic beauty make it a journey of peace and rejuvenation.
+                </p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
+        </div>
+
+        <!-- Manali -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23" alt="Manali">
+            <div class="card-content">
+                <h3>Adventures in the Hills of Manali</h3>
+                <p>
+                    Surrounded by snow-capped mountains and fresh mountain air, Manali is a dream destination for adventure lovers. The scenic beauty of Solang Valley and the thrill of exploring Rohtang Pass make every moment exciting.
+                </p>
+                <p>
+                    Whether enjoying river rafting in the Beas River or relaxing in cozy mountain cafés, Manali offers a perfect balance of adventure and peace. The breathtaking landscapes leave memories that last forever.
+                </p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Travel Blog | Exploring India One Journey at a Time
+</footer>
+
+</body>
+</html>
