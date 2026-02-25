@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Web Development Bootcamp — Learn to Build Real Sites</title>
+  <meta name="description" content="Intensive Web Development Bootcamp: HTML, CSS, JavaScript, React, Node.js. Hands-on projects, career support." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#06b6d4; --muted:#94a3b8; --glass: rgba(255,255,255,0.03);
+      --maxw:1100px; --radius:12px; --gap:20px; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#071028 0%, #071a2b 100%);color:#e6eef6;line-height:1.5}
+    .container{max-width:var(--maxw);margin:36px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a.cta{background:var(--accent);color:#042027;font-weight:600}
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:28px}
+    .hero-left h1{font-size:clamp(1.6rem,3.6vw,2.6rem);margin:0 0 12px}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .badges{display:flex;gap:10px;margin-bottom:18px}
+    .badge{background:var(--glass);padding:8px 12px;border-radius:999px;color:var(--muted);font-size:0.9rem}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:var(--accent);color:#042027;padding:12px 16px;border-radius:10px;border:none;font-weight:600;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    /* Card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .stats{display:flex;gap:12px;flex-wrap:wrap}
+    .stat{flex:1;min-width:120px}
+    .stat strong{display:block;font-size:1.2rem}
+    /* Curriculum */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .module{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));padding:14px;border-radius:10px}
+    .module h4{margin:0 0 8px}
+    /* Instructors & testimonials */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+    .instructor{display:flex;gap:12px;align-items:center}
+    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700}
+    /* FAQ */
+    .faq-item{border-top:1px solid rgba(255,255,255,0.03);padding:12px 0}
+    .question{display:flex;justify-content:space-between;cursor:pointer;color:var(--muted)}
+    .answer{margin-top:8px;color:var(--muted);display:none}
+    /* Footer */
+    footer{margin-top:36px;padding:18px 0;color:var(--muted);font-size:0.95rem;text-align:center}
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
+      nav{display:none}
+    }
+    @media (max-width:560px){
+      .grid{grid-template-columns:1fr}
+      .brand .name{display:none}
+      .logo{width:40px;height:40px}
+    }
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .pill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:0.9rem}
+    .price{font-size:1.6rem;font-weight:700;color:#fff}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">WB</div>
+        <div>
+          <div style="font-weight:700">WebBoot Institute</div>
+          <div class="muted" style="font-size:0.85rem">Web Development Bootcamp</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#instructors">Instructors</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="cta" href="#enroll">Enroll Now</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <div class="badges">
+          <div class="badge">12 weeks · Full-time</div>
+          <div class="badge">Live projects · Certificate</div>
+        </div>
+        <h1>Web Development Bootcamp — Build Real Products</h1>
+        <p>Intensive, hands-on training in HTML, CSS, JavaScript, React, Node.js, and deployment. Career-focused projects, mentorship, and interview prep.</p>
+        <div class="cta-row">
+          <button class="btn" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Enroll Now</button>
+          <button class="btn ghost" onclick="document.getElementById('curriculum').scrollIntoView({behavior:'smooth'})">View Curriculum</button>
+        </div>
+
+        <div style="margin-top:18px" class="card">
+          <div class="stats">
+            <div class="stat"><span class="muted">Start Date</span><strong>May 4, 2026</strong></div>
+            <div class="stat"><span class="muted">Duration</span><strong>12 weeks</strong></div>
+            <div class="stat"><span class="muted">Format</span><strong>Live online + recordings</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin-top:0">What you'll build</h3>
+        <ul style="padding-left:18px;color:var(--muted);margin:10px 0 14px">
+          <li>Responsive portfolio site</li>
+          <li>SPA with React and routing</li>
+          <li>Full-stack app with Node.js and MongoDB</li>
+        </ul>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div>
+            <div class="price">₹29,999</div>
+            <div class="muted" style="font-size:0.9rem">One-time payment or EMI available</div>
+          </div>
+          <div style="margin-left:auto">
+            <button class="btn" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Reserve Seat</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="curriculum" style="margin-top:28px">
+      <h2>Curriculum Overview</h2>
+      <p class="muted">A practical, project-first syllabus that moves from fundamentals to production-ready apps.</p>
+      <div class="grid">
+        <div class="module card">
+          <h4>Week 1–2: Foundations</h4>
+          <p class="muted">HTML5, semantic markup, accessibility, CSS layout (Flexbox, Grid).</p>
+        </div>
+        <div class="module card">
+          <h4>Week 3–4: JavaScript Essentials</h4>
+          <p class="muted">ES6+, DOM, asynchronous JS, fetch, and tooling.</p>
+        </div>
+        <div class="module card">
+          <h4>Week 5–7: Frontend Framework</h4>
+          <p class="muted">React, hooks, state management, routing, testing.</p>
+        </div>
+        <div class="module card">
+          <h4>Week 8–9: Backend Basics</h4>
+          <p class="muted">Node.js, Express, REST APIs, authentication.</p>
+        </div>
+        <div class="module card">
+          <h4>Week 10: Databases & Deployment</h4>
+          <p class="muted">MongoDB, ORMs, CI/CD, hosting on cloud platforms.</p>
+        </div>
+        <div class="module card">
+          <h4>Week 11–12: Capstone Project</h4>
+          <p class="muted">Team project, code review, portfolio polish, interview prep.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="instructors" class="two-col">
+      <div class="card">
+        <h3>Instructors</h3>
+        <div style="margin-top:12px">
+          <div class="instructor">
+            <div class="avatar">AR</div>
+            <div>
+              <div style="font-weight:700">Asha Rao</div>
+              <div class="muted">Senior Frontend Engineer — React & UX</div>
+            </div>
+          </div>
+          <div style="height:12px"></div>
+          <div class="instructor">
+            <div class="avatar">VK</div>
+            <div>
+              <div style="font-weight:700">Vikram Kulkarni</div>
+              <div class="muted">Full-stack Developer — Node.js & DevOps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Testimonials</h3>
+        <div style="margin-top:12px;color:var(--muted)">
+          <p><strong>Riya P.</strong> — "I landed a frontend role within 2 months of finishing the bootcamp."</p>
+          <p><strong>Sameer D.</strong> — "Hands-on projects and mentor feedback were game changers."</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" style="margin-top:22px">
+      <h2>Pricing & Scholarships</h2>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
+        <div class="card" style="flex:1;min-width:240px">
+          <h4>Standard</h4>
+          <div class="price">₹29,999</div>
+          <div class="muted">Full access, recordings, certificate</div>
+          <div style="margin-top:12px"><button class="btn" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Enroll</button></div>
+        </div>
+        <div class="card" style="flex:1;min-width:240px">
+          <h4>Pro (with 1:1 Mentorship)</h4>
+          <div class="price">₹49,999</div>
+          <div class="muted">Includes weekly mentor sessions and resume review</div>
+          <div style="margin-top:12px"><button class="btn" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Enroll Pro</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" style="margin-top:22px">
+      <h2>FAQ</h2>
+      <div class="card" style="margin-top:12px">
+        <div class="faq-item">
+          <div class="question" onclick="toggleFAQ(this)"><span>Do I need prior experience?</span><span class="muted">+</span></div>
+          <div class="answer">No. We start with fundamentals and provide extra prep material for beginners.</div>
+        </div>
+        <div class="faq-item">
+          <div class="question" onclick="toggleFAQ(this)"><span>Are there placement services?</span><span class="muted">+</span></div>
+          <div class="answer">Yes. We provide interview prep, resume reviews, and hiring partner introductions.</div>
+        </div>
+        <div class="faq-item">
+          <div class="question" onclick="toggleFAQ(this)"><span>What is the class schedule?</span><span class="muted">+</span></div>
+          <div class="answer">Live sessions are held evenings on weekdays and longer workshops on weekends. Recordings available.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="enroll" style="margin-top:22px">
+      <h2>Reserve Your Seat</h2>
+      <div class="card" style="display:flex;gap:16px;flex-wrap:wrap">
+        <form id="enrollForm" style="flex:1;min-width:260px" onsubmit="submitForm(event)">
+          <label class="muted">Full name</label><br/>
+          <input id="name" required style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit"/><br/>
+          <label class="muted">Email</label><br/>
+          <input id="email" type="email" required style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit"/><br/>
+          <label class="muted">Phone (optional)</label><br/>
+          <input id="phone" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit"/><br/>
+          <div style="margin-top:10px">
+            <button class="btn" type="submit">Reserve Seat</button>
+            <button type="button" class="btn ghost" onclick="document.getElementById('enrollForm').reset()">Clear</button>
+          </div>
+          <div id="formMsg" style="margin-top:10px;color:var(--muted)"></div>
+        </form>
+
+        <div style="flex:1;min-width:260px">
+          <div class="card">
+            <h4>Need help choosing?</h4>
+            <p class="muted">Message us with your background and goals — we'll recommend the right track and payment plan.</p>
+            <div style="margin-top:12px"><button class="btn ghost" onclick="alert('Open chat or email flow')">Contact Admissions</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <strong>WebBoot Institute</strong> — Built for learners. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <script>
+    // FAQ toggle
+    function toggleFAQ(el){
+      const ans = el.nextElementSibling;
+      const sign = el.querySelector('span:last-child');
+      if(ans.style.display === 'block'){ ans.style.display = 'none'; sign.textContent = '+'; }
+      else { ans.style.display = 'block'; sign.textContent = '−'; }
+    }
+
+    // Simple form handling (client-side only)
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('formMsg');
+      if(!name || !email){ msg.textContent = 'Please fill required fields.'; return; }
+      msg.textContent = 'Thanks, ' + name.split(' ')[0] + '! Your seat request is received. We will contact you at ' + email + '.';
+      document.getElementById('enrollForm').reset();
+    }
+
+    // Smooth scroll for anchor links (for browsers that don't support CSS smooth)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
