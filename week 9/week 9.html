@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Weather Info Panel</title>
+  <style>
+    :root{
+      --bg:#f4f7fb; --card:#ffffff; --muted:#6b7280; --accent:#2563eb;
+      --shadow: 0 6px 18px rgba(15,23,42,0.08);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{margin:0;background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 100%);color:#0f172a;}
+    .wrap{max-width:920px;margin:48px auto;padding:20px;}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{font-size:20px;margin:0}
+    .panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px}
+    .city{display:flex;align-items:center;gap:12px}
+    .city svg{width:56px;height:56px;flex:0 0 56px;border-radius:8px;background:linear-gradient(135deg,#e6f0ff,#fff);padding:8px}
+    .meta{display:flex;flex-direction:column}
+    .name{font-weight:600;font-size:16px}
+    .desc{color:var(--muted);font-size:13px}
+    .temp{font-size:36px;font-weight:700}
+    .row{display:flex;justify-content:space-between;align-items:center}
+    .small{font-size:13px;color:var(--muted)}
+    .footer{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+    @media (max-width:520px){.temp{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Simple Weather Info Panel</h1>
+      <div class="small">Static data for three fixed cities</div>
+    </header>
+
+    <section class="panel" id="panel">
+      <!-- Cards will be injected here -->
+    </section>
+
+    <div class="footer" style="margin-top:14px">
+      <div class="small">Last updated</div>
+      <div id="updated" class="small" style="margin-left:6px;color:var(--muted)">—</div>
+      <button class="btn" id="refresh">Refresh Display</button>
+    </div>
+  </div>
+
+  <script>
+    // Static weather data for three fixed cities
+    const weatherData = [
+      {
+        city: "Mumbai",
+        country: "IN",
+        tempC: 30,
+        condition: "Partly Cloudy",
+        humidity: 68,
+        windKph: 14,
+        icon: "☁️"
+      },
+      {
+        city: "New Delhi",
+        country: "IN",
+        tempC: 28,
+        condition: "Sunny",
+        humidity: 40,
+        windKph: 10,
+        icon: "☀️"
+      },
+      {
+        city: "Pune",
+        country: "IN",
+        tempC: 26,
+        condition: "Light Rain",
+        humidity: 75,
+        windKph: 8,
+        icon: "🌧️"
+      }
+    ];
+
+    // Configuration: default unit
+    let useCelsius = true;
+
+    function formatTemp(c) {
+      if (useCelsius) return `${c}°C`;
+      return `${Math.round(c * 9/5 + 32)}°F`;
+    }
+
+    function renderPanel() {
+      const panel = document.getElementById('panel');
+      panel.innerHTML = '';
+      weatherData.forEach(w => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="city">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect width="24" height="24" rx="4" fill="none"></rect>
+              <text x="12" y="16" text-anchor="middle" font-size="14">${w.icon}</text>
+            </svg>
+            <div class="meta">
+              <div class="name">${w.city}, ${w.country}</div>
+              <div class="desc">${w.condition}</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="temp" id="temp-${w.city}">${formatTemp(w.tempC)}</div>
+            <div class="small">
+              <div>Humidity: <strong>${w.humidity}%</strong></div>
+              <div>Wind: <strong>${w.windKph} kph</strong></div>
+            </div>
+          </div>
+        `;
+        panel.appendChild(card);
+      });
+
+      document.getElementById('updated').textContent = new Date().toLocaleString();
+    }
+
+    // Toggle units when user presses R key or click refresh button
+    document.getElementById('refresh').addEventListener('click', () => {
+      renderPanel();
+    });
+
+    // Optional keyboard shortcut: press U to toggle units
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'u') {
+        useCelsius = !useCelsius;
+        renderPanel();
+      }
+    });
+
+    // Initial render
+    renderPanel();
+  </script>
+</body>
+</html>
