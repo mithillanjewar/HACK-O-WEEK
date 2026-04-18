@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Score Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="wrapper">
+        <header>
+            <h1>Exam Score Tracker</h1>
+            <p>Dynamically calculate min, max, mode, and frequencies</p>
+        </header>
+
+        <main class="grid-container">
+            <!-- Input Section -->
+            <section class="glass-panel input-section">
+                <h2>Add New Score</h2>
+                <form id="score-form">
+                    <div class="input-group">
+                        <input type="number" id="score-input" min="0" max="100" placeholder="Enter score (0-100)" required>
+                        <button type="submit">Add Score</button>
+                    </div>
+                </form>
+                <div class="scores-list-container">
+                    <h3>Recent Scores</h3>
+                    <ul id="recent-scores-list">
+                        <!-- Scores will be added here dynamically -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="glass-panel stats-section">
+                <h2>Statistics Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 class="stat-title">Total Entries</h3>
+                        <p class="stat-value" id="total-count">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="stat-title">Minimum</h3>
+                        <p class="stat-value" id="min-score">-</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="stat-title">Maximum</h3>
+                        <p class="stat-value" id="max-score">-</p>
+                    </div>
+                    <div class="stat-card highlight">
+                        <h3 class="stat-title">Mode(s)</h3>
+                        <p class="stat-value" id="mode-score">-</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Frequency Distribution Section -->
+            <section class="glass-panel frequency-section">
+                <h2>Frequency Distribution</h2>
+                <div class="chart-container" id="frequency-chart">
+                    <!-- Bars will be generated here dynamically -->
+                    <p class="empty-state">No scores added yet.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
