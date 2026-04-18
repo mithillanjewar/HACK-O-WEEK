@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree Directory Hierarchy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div>
+                <h1>Directory Tree Mux</h1>
+                <p>Binary Hierarchy & Traversal Engine</p>
+            </div>
+            <div class="traversal-controls">
+                <button id="btn-preorder" class="btn btn-primary"><i class="ri-arrow-right-down-line"></i> Pre-order</button>
+                <button id="btn-inorder" class="btn btn-secondary"><i class="ri-arrow-right-line"></i> In-order</button>
+                <button id="btn-postorder" class="btn btn-accent"><i class="ri-arrow-right-up-line"></i> Post-order</button>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <div class="panel sidebar">
+                <div class="panel-header">
+                    <h2><i class="ri-folder-add-line"></i> Manage Nodes</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label for="folder-name">Folder Name</label>
+                        <input type="text" id="folder-name" placeholder="e.g., src, docs, img">
+                    </div>
+                    <div class="form-group">
+                        <label>Selected Parent Node:</label>
+                        <div id="selected-node-display" class="selected-node-badge">Root (/)</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="btn-add-left" class="btn btn-outline" title="Add Left Subdirectory">
+                            <i class="ri-corner-down-left-line"></i> Add Left
+                        </button>
+                        <button id="btn-add-right" class="btn btn-outline" title="Add Right Subdirectory">
+                            <i class="ri-corner-down-right-line"></i> Add Right
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="panel-header" style="margin-top: 2rem;">
+                    <h2><i class="ri-terminal-box-line"></i> Output Console</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="terminal" id="terminal-output">
+                        <div class="terminal-line"><span class="prompt">$</span> System initialized.</div>
+                        <div class="terminal-line"><span class="prompt">$</span> Ready for traversal commands.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel workspace">
+                <div class="panel-header">
+                    <h2><i class="ri-node-tree"></i> Visualization</h2>
+                    <span class="badge">Click nodes to select</span>
+                </div>
+                <div class="tree-container" id="tree-container">
+                    <!-- Tree SVG and Nodes will be rendered here via JS -->
+                    <svg id="tree-svg"></svg>
+                    <div id="tree-nodes"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
