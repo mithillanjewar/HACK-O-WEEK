@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Print Queue Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Print Queue Simulator</h1>
+        <button id="enqueue-btn" class="primary-btn">Enqueue Print Job</button>
+      </header>
+
+      <main class="dashboard">
+        <!-- Printer Status Panel -->
+        <section class="panel printer-panel">
+          <h2>Printer Status</h2>
+          <div id="printer-status" class="status-indicator idle">
+            <span class="status-text">Idle</span>
+            <div class="loader-ring hidden" id="printer-loader"></div>
+          </div>
+          <div id="current-job" class="current-job hidden">
+            <h3 id="current-job-name">-</h3>
+            <p id="current-job-id">-</p>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="printer-progress"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Queue Panel -->
+        <section class="panel queue-panel">
+          <h2>Waiting Queue (<span id="queue-count">0</span>)</h2>
+          <div id="queue-list" class="queue-list">
+            <!-- Print jobs will appear here -->
+            <div class="empty-state" id="empty-queue-msg">Queue is empty</div>
+          </div>
+        </section>
+        
+        <!-- Completed Panel -->
+        <section class="panel completed-panel">
+          <h2>Completed Jobs (<span id="completed-count">0</span>)</h2>
+          <div id="completed-list" class="completed-list">
+            <!-- Completed jobs will appear here -->
+            <div class="empty-state" id="empty-completed-msg">No jobs completed yet</div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
