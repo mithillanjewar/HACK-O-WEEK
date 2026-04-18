@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Library</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f') no-repeat center center/cover;
+    color: #2e2e2e;
+}
+
+/* Soft overlay */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+/* TITLE */
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    animation: fadeDown 1s ease;
+}
+
+/* SEARCH */
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 30px;
+    flex-wrap: wrap;
+    animation: fadeUp 1s ease;
+}
+
+.search-container input {
+    padding: 12px;
+    width: 200px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.search-container input:focus {
+    outline: none;
+    transform: scale(1.05);
+}
+
+/* BUTTON */
+button {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: none;
+    background: #ffffffcc;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+/* ACTIONS */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    animation: fadeUp 1.2s ease;
+}
+
+/* SECTIONS */
+.section {
+    margin: 50px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.6s;
+}
+
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section h2 {
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+/* BOOK ROW */
+.books {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+}
+
+/* BOOK CARD */
+.book {
+    min-width: 160px;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(12px);
+    transition: 0.3s;
+}
+
+.book:hover {
+    transform: translateY(-10px) scale(1.03);
+}
+
+/* IMAGE */
+.book img {
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* POPUP */
+.form-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: rgba(255,255,255,0.9);
+    padding: 25px;
+    border-radius: 18px;
+    display: none;
+    z-index: 1000;
+    animation: popup 0.3s ease forwards;
+}
+
+.form-popup input {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 250px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* CLOSE */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+/* ANIMATIONS */
+@keyframes popup {
+    from { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Welcome to Library!</h1>
+
+<div class="search-container">
+<input id="searchTitle" placeholder="Title">
+<input id="searchAuthor" placeholder="Author">
+<input id="searchCategory" placeholder="Category">
+<button onclick="searchBooks()">Search</button>
+</div>
+
+<div class="actions">
+<div onclick="openAdd()">➕ Add Book</div>
+<div onclick="openDelete()">➖ Delete Book</div>
+</div>
+
+<div id="overlay" class="overlay" onclick="closeForms()"></div>
+
+<div id="addForm" class="form-popup">
+<span class="close-btn" onclick="closeForms()">❌</span>
+<h3>Add Book</h3>
+<input id="title" placeholder="Title">
+<input id="author" placeholder="Author">
+<input id="category" placeholder="Category">
+<input id="image" placeholder="Image URL">
+<button onclick="addBook()">Add</button>
+</div>
+
+<div id="deleteForm" class="form-popup">
+<span class="close-btn" onclick="closeForms()">❌</span>
+<h3>Delete Book</h3>
+<input id="deleteTitle" placeholder="Title">
+<button onclick="deleteBook()">Delete</button>
+</div>
+
+<div id="content"></div>
+
+<script>
+
+// SAME BOOK DATA (unchanged)
+let books = [
+
+/* MYSTERY */
+{title:"The Girl with the Dragon Tattoo", author:"Stieg Larsson", category:"mystery", img:"https://covers.openlibrary.org/b/id/8228691-L.jpg"},
+{title:"Gone Girl", author:"Gillian Flynn", category:"mystery", img:"https://covers.openlibrary.org/b/id/8231856-L.jpg"},
+{title:"The Da Vinci Code", author:"Dan Brown", category:"mystery", img:"https://covers.openlibrary.org/b/id/240726-L.jpg"},
+{title:"Sherlock Holmes", author:"Arthur Conan Doyle", category:"mystery", img:"https://covers.openlibrary.org/b/id/8225631-L.jpg"},
+
+/* ROMANCE */
+{title:"Pride and Prejudice", author:"Jane Austen", category:"romance", img:"https://covers.openlibrary.org/b/id/8091016-L.jpg"},
+{title:"Me Before You", author:"Jojo Moyes", category:"romance", img:"https://covers.openlibrary.org/b/id/8225261-L.jpg"},
+{title:"The Notebook", author:"Nicholas Sparks", category:"romance", img:"https://covers.openlibrary.org/b/id/8235116-L.jpg"},
+{title:"It Ends With Us", author:"Colleen Hoover", category:"romance", img:"https://covers.openlibrary.org/b/id/11153292-L.jpg"},
+
+/* ACADEMIC */
+{title:"A Brief History of Time", author:"Stephen Hawking", category:"academic", img:"https://covers.openlibrary.org/b/id/240726-L.jpg"},
+{title:"Sapiens", author:"Yuval Noah Harari", category:"academic", img:"https://covers.openlibrary.org/b/id/8370226-L.jpg"},
+{title:"Thinking Fast and Slow", author:"Daniel Kahneman", category:"academic", img:"https://covers.openlibrary.org/b/id/240728-L.jpg"},
+{title:"The Selfish Gene", author:"Richard Dawkins", category:"academic", img:"https://covers.openlibrary.org/b/id/240727-L.jpg"},
+
+/* STORY */
+{title:"Harry Potter", author:"J.K. Rowling", category:"story", img:"https://covers.openlibrary.org/b/id/7984916-L.jpg"},
+{title:"The Hobbit", author:"J.R.R. Tolkien", category:"story", img:"https://covers.openlibrary.org/b/id/6979861-L.jpg"},
+{title:"Alice in Wonderland", author:"Lewis Carroll", category:"story", img:"https://covers.openlibrary.org/b/id/8221256-L.jpg"},
+{title:"The Alchemist", author:"Paulo Coelho", category:"story", img:"https://covers.openlibrary.org/b/id/8107891-L.jpg"}
+
+];
+function displayBooks(list = books) {
+    let categories = [...new Set(list.map(b => b.category))];
+    let output = "";
+
+    categories.forEach(cat => {
+        output += `<div class="section">
+        <h2>${cat.toUpperCase()}</h2>
+        <div class="books">`;
+
+        list.filter(b => b.category === cat).forEach(b => {
+            output += `
+            <div class="book">
+            <img src="${b.img}">
+            <p><b>${b.title}</b></p>
+            <p>${b.author}</p>
+            </div>`;
+        });
+
+        output += `</div></div>`;
+    });
+
+    document.getElementById("content").innerHTML = output;
+
+    // Scroll animation trigger
+    document.querySelectorAll('.section').forEach(sec => {
+        setTimeout(() => sec.classList.add('show'), 100);
+    });
+}
+
+displayBooks();
+
+/* rest JS same as before */
+function searchBooks() {
+    let t = document.getElementById("searchTitle").value.toLowerCase();
+    let a = document.getElementById("searchAuthor").value.toLowerCase();
+    let c = document.getElementById("searchCategory").value.toLowerCase();
+
+    let result = books.filter(b =>
+        (!t || b.title.toLowerCase().includes(t)) &&
+        (!a || b.author.toLowerCase().includes(a)) &&
+        (!c || b.category.toLowerCase().includes(c))
+    );
+
+    displayBooks(result);
+}
+
+function openAdd() {
+    addForm.style.display = "block";
+    overlay.style.display = "block";
+    deleteForm.style.display = "none";
+}
+
+function openDelete() {
+    deleteForm.style.display = "block";
+    overlay.style.display = "block";
+    addForm.style.display = "none";
+}
+
+function closeForms() {
+    addForm.style.display = "none";
+    deleteForm.style.display = "none";
+    overlay.style.display = "none";
+}
+
+function addBook() {
+    books.push({
+        title: title.value,
+        author: author.value,
+        category: category.value.toLowerCase(),
+        img: image.value || "https://covers.openlibrary.org/b/id/8231996-L.jpg"
+    });
+
+    displayBooks();
+    closeForms();
+}
+
+function deleteBook() {
+    let t = deleteTitle.value.toLowerCase();
+    books = books.filter(b => b.title.toLowerCase() !== t);
+
+    displayBooks();
+    closeForms();
+}
+
+</script>
+
+</body>
+</html>
